@@ -12,7 +12,7 @@ class GetTweets():
         self._twitter = tw.API(self._auth)
 
     def getTweetByKeyword(self, searchKeyword, hashtagFlag=0, volume=100):
-        """Returns a list of tweets of s per the search keyword"""
+        """Returns a list of tweets containing the search keyword"""
         public_tweets = self._twitter.search(
             ((hashtagFlag and '#' or '') + searchKeyword), count=volume)
         l = []
