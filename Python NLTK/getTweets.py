@@ -21,7 +21,14 @@ class GetTweets():
         return l
 
 
-# if __name__ == '__main__':
+if __name__ == '__main__':
+    tweet = GetTweets()
+    l = tweet.getTweetByKeyword('Obama', 1)
+    # print(l)
+    for i in l:
+        print(i)
+
+
 def main():
     tweet = GetTweets()
     l = tweet.getTweetByKeyword('Obama', 1)
