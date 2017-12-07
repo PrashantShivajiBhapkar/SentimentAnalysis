@@ -17,7 +17,7 @@ class GetTweets():
             ((hashtagFlag and '#' or '') + searchKeyword), count=volume)
         l = []
         for tweet in public_tweets:
-            l.append(tweet.text.encode("utf-8"))
+            l.append(tweet.text.encode("utf-8").decode('unicode_escape').encode('ascii', 'ignore'))
         return l
 
 

@@ -18,6 +18,8 @@ def preProcess(listOfTweets, topN=50):
 if __name__ == '__main__':
     a = twt.GetTweets()
     tweets = a.getTweetByKeyword('Trump', 1, 1000)
+    # print(tweets[0])
+    # print(tweets[0].decode('unicode_escape').encode('ascii', 'ignore'))
     print(preProcess(tweets, 100))
-    print(tweets[0])
+    # print(tweets[0])
 # tweets contain a lot of garbage. Need cleaning
