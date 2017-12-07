@@ -2,7 +2,11 @@ import tweepy as tw
 
 
 class GetTweets():
-    def __init__(self, consumer_key, consumer_secret, access_token, access_tkn_secret):
+    def __init__(self,
+                 consumer_key='sSRGLaVYyWgtU4hVP5cJGmgmB',
+                 consumer_secret='EY438AALpE8uixPx5HubQhojNzUbaWgY9CRGkWBb5uFVLgNAeT',
+                 access_token='159740497-y5MiYlkJUlopvVj8ziMPqZE7s1ovTMp4tfsOq7V0',
+                 access_tkn_secret='Waz6c3kls3ueOQ78aVAoC0o6kwmh1rWLRzK5DsnJlP05I'):
         self._auth = tw.OAuthHandler(consumer_key, consumer_secret)
         self._auth.set_access_token(access_token, access_tkn_secret)
         self._twitter = tw.API(self._auth)
@@ -17,12 +21,10 @@ class GetTweets():
         return l
 
 
-if __name__ == '__main__':
-    consumer_key = 'sSRGLaVYyWgtU4hVP5cJGmgmB'
-    consumer_secret = 'EY438AALpE8uixPx5HubQhojNzUbaWgY9CRGkWBb5uFVLgNAeT'
-    access_token = '159740497-y5MiYlkJUlopvVj8ziMPqZE7s1ovTMp4tfsOq7V0'
-    access_tkn_secret = 'Waz6c3kls3ueOQ78aVAoC0o6kwmh1rWLRzK5DsnJlP05I'
-    tweet = GetTweets(consumer_key, consumer_secret, access_token, access_tkn_secret)
+# if __name__ == '__main__':
+def main():
+    tweet = GetTweets()
     l = tweet.getTweetByKeyword('Obama', 1)
-    for i in l:
-        print(i)
+    # print(l)
+    # for i in l:
+    #    print(i)

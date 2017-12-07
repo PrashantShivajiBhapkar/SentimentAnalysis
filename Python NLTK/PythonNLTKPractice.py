@@ -13,6 +13,7 @@ print('------------------Word Tokenizer------------------')
 tokenized_words = word_tokenize(text)
 print('word_tokenize() returns a ' + str(type(tokenized_sentence)) +
       ' of tokens which are individual words.')
+print(tokenized_words)
 for i in tokenized_words:
     print(i)
 
