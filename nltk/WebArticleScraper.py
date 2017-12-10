@@ -44,7 +44,7 @@ if __name__ == '__main__':
         title, newsContent = scraper(url, cnnTagDict)
         newsStories[title] = newsContent
         allNews += newsContent
-    print(newsStories['Appeals judge facing claims of inappropriate sexual conduct - CNNPolitics'])
+    # print(newsStories['Appeals judge facing claims of inappropriate sexual conduct - CNNPolitics'])
     # _, content = scraper(cnnUrl1, cnnTagDict)
 
     safp.writeJson(safp.wordCloud(allNews, topN=100, pos='adjective'))

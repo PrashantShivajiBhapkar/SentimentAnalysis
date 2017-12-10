@@ -31,7 +31,6 @@ def wordCloud(text, topN=50, lang='english', pos=None):
     # fdist.most_common(topN) returns list of tuples->value1=term, value2=count
     for val in fdist.most_common(topN):
         topN_dict[val[0]] = str(val[1])
-    print(extractTknsForPOS(text, pos='noun'))
     return topN_dict
 
 
@@ -66,22 +65,17 @@ def extractTknsForPOS(text, pos, lang='english'):
         reObj = re.compile('^NN.?')
         for key in taggedWordsDict.keys():
             if reObj.match(key):
-                print(key)
                 tknsWithPOSLst.extend(taggedWordsDict[key])
     elif pos.lower() == 'adjective':
         reObj = re.compile('^JJ.?')
         for key in taggedWordsDict.keys():
             if reObj.match(key):
-                print(key)
                 tknsWithPOSLst.extend(taggedWordsDict[key])
     elif pos.lower() == 'verb':
         reObj = re.compile('^VB.?')
         for key in taggedWordsDict.keys():
             if reObj.match(key):
-                print(key)
                 tknsWithPOSLst.extend(taggedWordsDict[key])
-
-    print(taggedWordsDict)
     return tknsWithPOSLst
 
 
