@@ -4,7 +4,10 @@ class Politics(object):
 	"""docstring for Politics"""
 
 	def __init__(self):
+<<<<<<< HEAD
 		print ('this is about politics')
+=======
+>>>>>>> ae997cf7366ced46f8f8ca0d040237fa98deb6f6
 		pass
 
 	@cherrypy.expose
