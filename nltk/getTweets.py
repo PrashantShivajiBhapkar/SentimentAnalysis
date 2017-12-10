@@ -12,19 +12,22 @@ class GetTweets():
         self._twitter = tw.API(self._auth)
 
     def getTweetByKeyword(self, searchKeyword, hashtagFlag=0, volume=100):
-        """Returns a list of tweets containing the search keyword"""
+        """Returns a list of tweets containing the search keyword. Currently max of 100 tweets."""
         public_tweets = self._twitter.search(
             ((hashtagFlag and '#' or '') + searchKeyword), count=volume)
         l = []
         for tweet in public_tweets:
-            l.append(tweet.text.encode("utf-8").decode('unicode_escape').encode('ascii', 'ignore'))
+            l.append(str(tweet.text.encode("utf-8").decode('unicode_escape').encode('ascii', 'ignore')))
+        print(public_tweets.max_id)
         return l
 
 
+# For debugging
 if __name__ == '__main__':
     tweet = GetTweets()
     l = tweet.getTweetByKeyword('Obama', 1)
-    # print(l)
+    print(type(l))
+    print(type(l[0]))
     for i in l:
         print(i)
 
@@ -32,6 +35,3 @@ if __name__ == '__main__':
 def main():
     tweet = GetTweets()
     l = tweet.getTweetByKeyword('Obama', 1)
-    # print(l)
-    # for i in l:
-    #    print(i)
