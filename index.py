@@ -8,7 +8,7 @@ class Root(object):
 
     def __init__(self):
         self.politics = Politics.Politics()
-        print self.politics
+        # print (self.politics)
 
     @cherrypy.expose
     def index(self):
