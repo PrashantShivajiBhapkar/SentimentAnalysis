@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import urllib3
 from collections import OrderedDict
+import SentimentAnalysisForProject as safp
 
 
 def scraper(url, sourceTagDict):
@@ -38,9 +39,13 @@ if __name__ == '__main__':
     cnnTagDict = OrderedDict()
     cnnTagDict = {'p': {"class": 'zn-body__paragraph'}, 'div': {"class": 'zn-body__paragraph'}}
     newsStories = {}
+    allNews = ''
     for url in urlList:
         title, newsContent = scraper(url, cnnTagDict)
         newsStories[title] = newsContent
+        allNews += newsContent
     print(newsStories['Appeals judge facing claims of inappropriate sexual conduct - CNNPolitics'])
+    # _, content = scraper(cnnUrl1, cnnTagDict)
 
+    safp.writeJson(safp.wordCloud(allNews, topN=100, pos='adjective'))
     cnnLanding = 'http://www.cnn.com/'

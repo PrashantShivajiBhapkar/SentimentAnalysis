@@ -14,10 +14,7 @@ class Root(object):
 
     def __init__(self):
         self.politics = Politics.Politics()
-<<<<<<< HEAD
         # print (self.politics)
-=======
->>>>>>> ae997cf7366ced46f8f8ca0d040237fa98deb6f6
 
     @cherrypy.expose
     def index(self):
