@@ -1,21 +1,22 @@
 import nltk
-import getTweets as twt
+# import getTweets as twt
 from nltk.corpus import stopwords as stpWrds
 from nltk.tokenize import word_tokenize
 import json
-import os
+# import os
 import string
 import re
 from pathlib import Path
 
 
 def wordCloud(text, topN=50, lang='english', pos=None):
-    """This function accepts a text in language-lang and returns a dict of topN
-       tokens. dictFormat - {<token>: <frequency>}
+    """This function accepts a <text>(string) in language <lang>(string) and
+       returns a dict of topN tokens in the format -> {<token>: <frequency>}
        PARAMS: text(string) - string to get topN most occurring tokens from
                topN(int) - count of most occurring tokens
                lang(string) - language of the text
-       RETURNS: dict of tokens after filtration"""
+       RETURNS: topN_dict(dict) - dict of topN(N most frequent) tokens after
+                filtration"""
     topN_dict = {}
     # Get list of filtered tokens
     stopWrdsFilteredTknLst = filterStopWords(text, lang)
@@ -35,9 +36,12 @@ def wordCloud(text, topN=50, lang='english', pos=None):
 
 
 def filterStopWords(text, lang='english'):
-    """PARAMS: text(string) - string to remove stopwords from
+    """This function accepts a <text>(string) in language <lang>(string),
+       removes all the stopwords from that and returns a list of filtered
+       tokens.
+       PARAMS: text(string) - string to remove stopwords from
                lang(string) - language of text
-       RETURNS: list of tokens after filtration
+       RETURNS: filteredTokenLst(list) - list of tokens after filtration
     """
     stopwords = set(stpWrds.words(lang))
     tokensLst = word_tokenize(text)
@@ -48,9 +52,13 @@ def filterStopWords(text, lang='english'):
 
 
 def extractTknsForPOS(text, pos, lang='english'):
-    """PARAMS: text(string) - string to extract tokens having a particular POS from
-               pos(string) - Part of speech: Noun, Adjective, Verb etc.
-       RETURNS(list): - list of tokens having parametered pos
+    """This function accepts a <text>(string) which is in language <lang>(string)
+       and returns a list of all tokens from the text having POS tag as
+       <pos>(string).
+       PARAMS: text(string) - string to extract tokens having a particular POS
+               from
+               pos(string) - Part of speech->Noun, Adjective, Verb etc.
+       RETURNS: tknsWithPOSLst(list) - list of tokens having <pos> tag
     """
     filteredTokens = filterStopWords(text, lang)
     taggedWordsLst = nltk.pos_tag(filteredTokens)
@@ -80,10 +88,15 @@ def extractTknsForPOS(text, pos, lang='english'):
 
 
 def writeJson(dictToWrite):
+    """This function accepts a dict <dictToWrite> and writes it to a json file
+       at a default location.
+       PARAMS: dictToWrite(dict) - dictionary to write to json file.
+       RETURNS: None
+    """
     # Dump the dictionary into a JSON file
     # dir_path = os.path.dirname(os.path.realpath(__file__)).replace('\\','/')
     Path(__file__).parents[1]
-    dir_path = str(Path(__file__).parents[1]).replace('\\','/')
+    dir_path = str(Path(__file__).parents[1]).replace('\\', '/')
     with open(dir_path + '/public/json/wordCloudData' + '.json', 'w') as fp:
         json.dump(dictToWrite, fp)
 
